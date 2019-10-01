@@ -1,0 +1,22 @@
+{
+  "title": "Category",
+  "type": "object",
+  "description": "Category Object",
+  "properties": {
+    "slug": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "child_categories": {
+      "type": "array",
+      "items": {
+        "$ref": ""
+      }
+    },
+    "with_listings": {
+      "type": "boolean"
+    }
+  }
+}
