@@ -11,9 +11,9 @@
     }
   ],
   "info": {
-    "description": "Rent marketmpace",
+    "description": "",
     "version": "1.0.0",
-    "title": "Swagger Rentnow",
+    "title": "old",
     "termsOfService": "",
     "contact": {
       "email": "support@rentnow.com.ua"
@@ -170,8 +170,122 @@
               ]
             },
             "in": "header",
-            "description": "Need for get localized fields (default: ru)",
-            "name": "X-localization"
+            "name": "X-localization",
+            "description": "Default: `ru`"
+          }
+        ]
+      }
+    },
+    "/listings/list": {
+      "get": {
+        "summary": "Lisings list by category (paged)",
+        "tags": [
+          "Listing"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": [
+                        "string",
+                        "array"
+                      ],
+                      "items": {
+                        "$ref": "../common/models/listing.v1.json"
+                      }
+                    },
+                    "meta": {
+                      "type": [
+                        "string",
+                        "object"
+                      ],
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "from": {
+                          "type": "integer"
+                        },
+                        "last_page": {
+                          "type": "integer"
+                        },
+                        "path": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        },
+                        "to": {
+                          "type": "integer"
+                        },
+                        "total": {
+                          "type": "integer"
+                        }
+                      }
+                    },
+                    "links": {
+                      "type": "object",
+                      "properties": {
+                        "first": {
+                          "type": "string"
+                        },
+                        "last": {
+                          "type": "string"
+                        },
+                        "prev": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "next": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../common/models/validation-error.v1.json"
+                }
+              }
+            }
+          }
+        },
+        "description": "",
+        "requestBody": {},
+        "parameters": [
+          {
+            "schema": {
+              "type": "integer",
+              "exclusiveMaximum": false,
+              "minimum": 1
+            },
+            "in": "query",
+            "name": "page"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "category_slug",
+            "required": true
           }
         ]
       }
