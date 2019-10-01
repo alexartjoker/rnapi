@@ -1,0 +1,20 @@
+{
+  "title": "Validation Error",
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string"
+    },
+    "errors": {
+      "type": "object",
+      "properties": {
+        "{key_name}": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

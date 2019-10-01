@@ -1,0 +1,195 @@
+{
+  "openapi": "3.0.0",
+  "servers": [
+    {
+      "url": "http://dev.rentnow.com.ua/api/v1",
+      "description": "dev"
+    },
+    {
+      "description": "stage",
+      "url": "http://st.rentnow.com.ua/api/v1"
+    }
+  ],
+  "info": {
+    "description": "Rent marketmpace",
+    "version": "1.0.0",
+    "title": "Swagger Rentnow",
+    "termsOfService": "",
+    "contact": {
+      "email": "support@rentnow.com.ua"
+    }
+  },
+  "tags": [
+    {
+      "name": "Auth"
+    }
+  ],
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "summary": "Get JWT token",
+        "description": "",
+        "parameters": [],
+        "operationId": "v1.auth.login",
+        "responses": {
+          "200": {
+            "description": "Login successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "access_token": "dssdfsdewerq",
+                  "token_type": "bearer",
+                  "expires_in": 8784121,
+                  "type": "object",
+                  "properties": {
+                    "access_token": {
+                      "type": "string"
+                    },
+                    "token_type": {
+                      "type": "string",
+                      "enum": [
+                        "bearer"
+                      ]
+                    },
+                    "expires_in": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "access_token",
+                    "token_type",
+                    "expires_in"
+                  ]
+                },
+                "examples": {}
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "access_token": {
+                      "type": "string"
+                    },
+                    "token_type": {
+                      "type": "string"
+                    },
+                    "expires_in": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "access_token",
+                    "token_type",
+                    "expires_in"
+                  ]
+                },
+                "examples": {}
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorize",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "error": "Unauthorized",
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "enum": [
+                        "Unauthorized"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "required": false,
+              "schema": {
+                "email": "some@email.com",
+                "password": "password",
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "email",
+                  "password"
+                ]
+              }
+            }
+          },
+          "description": ""
+        },
+        "security": []
+      }
+    },
+    "/categories/list": {
+      "get": {
+        "summary": "Get nested list of all categories",
+        "tags": [
+          "category"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "../common/models/category.v1.json"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ru",
+                "uk"
+              ]
+            },
+            "in": "header",
+            "description": "Need for get localized fields (default: ru)",
+            "name": "X-localization"
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {},
+    "requestBodies": {},
+    "securitySchemes": {
+      "JWT": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header",
+        "description": "Example: Bearer dfsdfsdj..."
+      }
+    },
+    "links": {},
+    "callbacks": {}
+  },
+  "security": []
+}

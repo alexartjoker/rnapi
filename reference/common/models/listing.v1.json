@@ -1,0 +1,33 @@
+{
+  "title": "Listing",
+  "type": "object",
+  "description": "Litting in list",
+  "properties": {
+    "slug": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "deposit": {
+      "type": "string"
+    },
+    "price": {
+      "type": "string"
+    },
+    "thumbnail": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "slug",
+    "title",
+    "url",
+    "deposit",
+    "price",
+    "thumbnail"
+  ]
+}
