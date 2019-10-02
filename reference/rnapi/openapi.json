@@ -13,7 +13,7 @@
   "info": {
     "description": "",
     "version": "1.0.0",
-    "title": "old",
+    "title": "Rentnow Api Document",
     "termsOfService": "",
     "contact": {
       "email": "support@rentnow.com.ua"
@@ -286,6 +286,57 @@
             "in": "query",
             "name": "category_slug",
             "required": true
+          }
+        ]
+      }
+    },
+    "/localities/city-list": {
+      "get": {
+        "summary": "Get gist of city",
+        "tags": [
+          "Locality",
+          "City"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "slug": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ru",
+                "uk"
+              ],
+              "default": "ru"
+            },
+            "in": "header",
+            "name": "X-localization"
           }
         ]
       }
