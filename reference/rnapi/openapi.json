@@ -28,6 +28,8 @@
     "/auth/login": {
       "post": {
         "summary": "Get Login TOKEN",
+        "description": " ",
+        "operationId": "auth.login",
         "responses": {
           "200": {
             "description": "Login successful",
@@ -49,9 +51,26 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
-        "description": " ",
+        "tags": [
+          "Auth"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -72,11 +91,7 @@
               }
             }
           }
-        },
-        "operationId": "auth.login",
-        "tags": [
-          "Auth"
-        ]
+        }
       }
     },
     "/categories/list": {
@@ -114,8 +129,8 @@
             "description": "Default: `ru`"
           }
         ],
-        "operationId": "v1.categories.list",
-        "description": " "
+        "description": " ",
+        "operationId": "v1.categories.list"
       }
     },
     "/listings/list": {
@@ -132,27 +147,10 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "links": {
-                      "type": "object",
-                      "properties": {
-                        "first": {
-                          "type": "string"
-                        },
-                        "last": {
-                          "type": "string"
-                        },
-                        "prev": {
-                          "type": [
-                            "string",
-                            "null"
-                          ]
-                        },
-                        "next": {
-                          "type": [
-                            "string",
-                            "null"
-                          ]
-                        }
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Listing"
                       }
                     },
                     "meta": {
@@ -184,10 +182,27 @@
                         }
                       }
                     },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Listing"
+                    "links": {
+                      "type": "object",
+                      "properties": {
+                        "first": {
+                          "type": "string"
+                        },
+                        "last": {
+                          "type": "string"
+                        },
+                        "prev": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "next": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
                       }
                     }
                   }
@@ -279,33 +294,38 @@
             "name": "X-localization"
           }
         ],
-        "operationId": "v1.localities.city-list",
-        "description": " "
+        "description": " ",
+        "operationId": "v1.localities.city-list"
       },
       "parameters": []
     }
   },
   "components": {
     "schemas": {
-      "Validation-Error": {
-        "title": "Validation Error",
+      "Category": {
+        "title": "Category",
         "type": "object",
+        "description": "Category Object",
         "properties": {
-          "errors": {
-            "type": "object",
-            "properties": {
-              "{key_name}": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
+          "with_listings": {
+            "type": "boolean"
+          },
+          "child_categories": {
+            "type": "array",
+            "items": {
+              "$ref": ""
             }
           },
-          "message": {
+          "name": {
+            "type": "string"
+          },
+          "slug": {
             "type": "string"
           }
-        }
+        },
+        "x-tags": [
+          "category"
+        ]
       },
       "Listing": {
         "title": "Listing",
@@ -338,29 +358,33 @@
           "url",
           "title",
           "slug"
+        ],
+        "x-tags": [
+          "Listing"
         ]
       },
-      "Category": {
-        "title": "Category",
+      "Validation-Error": {
+        "title": "Validation Error",
         "type": "object",
-        "description": "Category Object",
         "properties": {
-          "with_listings": {
-            "type": "boolean"
-          },
-          "child_categories": {
-            "type": "array",
-            "items": {
-              "$ref": ""
+          "errors": {
+            "type": "object",
+            "properties": {
+              "{key_name}": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
             }
           },
-          "name": {
-            "type": "string"
-          },
-          "slug": {
+          "message": {
             "type": "string"
           }
-        }
+        },
+        "x-tags": [
+          "validation"
+        ]
       }
     },
     "requestBodies": {},
