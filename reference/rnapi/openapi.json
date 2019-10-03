@@ -298,6 +298,108 @@
         "operationId": "v1.localities.city-list"
       },
       "parameters": []
+    },
+    "/order-requests/create-from-bot": {
+      "post": {
+        "summary": "Create new order-request from bot",
+        "tags": [],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Validation-Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "phone": {
+                    "type": "string",
+                    "description": "Phone number in the intertationan format",
+                    "example": 380995555555
+                  },
+                  "user_name": {
+                    "type": "string",
+                    "maxLength": 255
+                  },
+                  "user_registration": {
+                    "type": "string",
+                    "enum": [
+                      "local",
+                      "not_local"
+                    ]
+                  },
+                  "city_slug": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string",
+                    "maxLength": 1000
+                  },
+                  "rent_start_date": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2019-10-03"
+                  },
+                  "rent_days": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 30
+                  },
+                  "need_delivery": {
+                    "type": "boolean"
+                  },
+                  "delivery_address": {
+                    "type": "string",
+                    "maxLength": 255
+                  },
+                  "payment_type": {
+                    "type": "string",
+                    "enum": [
+                      "cash",
+                      "soft_deal"
+                    ]
+                  }
+                },
+                "required": [
+                  "phone",
+                  "user_name",
+                  "user_registration",
+                  "city_slug",
+                  "rent_start_date",
+                  "need_delivery",
+                  "payment_type"
+                ]
+              }
+            }
+          },
+          "description": ""
+        }
+      }
     }
   },
   "components": {
