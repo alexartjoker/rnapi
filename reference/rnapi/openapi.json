@@ -348,7 +348,9 @@
     "/order-requests/create-from-bot": {
       "post": {
         "summary": "Create new order-request from bot",
-        "tags": [],
+        "tags": [
+          "Order Request"
+        ],
         "responses": {
           "201": {
             "description": "Created",
@@ -455,6 +457,14 @@
             },
             "in": "header",
             "name": "Accept",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Authorization",
             "required": true
           }
         ]
