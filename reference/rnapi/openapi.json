@@ -178,10 +178,7 @@
                       }
                     },
                     "meta": {
-                      "type": [
-                        "string",
-                        "object"
-                      ],
+                      "type": "object",
                       "properties": {
                         "current_page": {
                           "type": "integer"
