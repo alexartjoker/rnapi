@@ -91,7 +91,20 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "*/json"
+              ]
+            },
+            "in": "header",
+            "name": "Accept",
+            "required": true
+          }
+        ]
       }
     },
     "/categories/list": {
@@ -127,6 +140,17 @@
             "in": "header",
             "name": "X-localization",
             "description": "Default: `ru`"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "*/json"
+              ]
+            },
+            "in": "header",
+            "name": "Accept",
+            "required": true
           }
         ],
         "description": " ",
@@ -240,6 +264,17 @@
             "in": "query",
             "name": "category_slug",
             "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "*/json"
+              ]
+            },
+            "in": "header",
+            "name": "Accept",
+            "required": true
           }
         ],
         "operationId": "v1.listings.list"
@@ -292,6 +327,17 @@
             },
             "in": "header",
             "name": "X-localization"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "*/json"
+              ]
+            },
+            "in": "header",
+            "name": "Accept",
+            "required": true
           }
         ],
         "description": " ",
@@ -398,7 +444,20 @@
             }
           },
           "description": ""
-        }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "*/json"
+              ]
+            },
+            "in": "header",
+            "name": "Accept",
+            "required": true
+          }
+        ]
       }
     }
   },
